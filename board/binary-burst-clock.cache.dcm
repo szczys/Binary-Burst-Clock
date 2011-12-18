@@ -1,0 +1,31 @@
+EESchema-DOCLIB  Version 2.0  Sun 18 Dec 2011 09:49:11 AM CST
+#
+$CMP 2907A
+F transistors/bipolar/2907A.pdf
+$ENDCMP
+#
+$CMP AVR-ISP-6
+D Atmel AVR 6 Pin ISP connector
+K ISP isp ISP6 isp6 isp-6 ISP-6 ATMEL-ISP atmel-isp ATMELISP atmelisp 6pin AVR avr
+$ENDCMP
+#
+$CMP C
+D Condensateur non polarise
+$ENDCMP
+#
+$CMP CONN_5
+D Symbole general de connecteur
+K CONN
+$ENDCMP
+#
+$CMP R
+D Resistance
+K R DEV
+$ENDCMP
+#
+$CMP SW_PUSH
+D Push Button
+K Switch
+$ENDCMP
+#
+#End Doc Library

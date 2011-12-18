@@ -1,42 +1,8 @@
-EESchema Schematic File Version 2  date Sat 17 Dec 2011 11:42:45 PM CST
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:special
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:attiny
-LIBS:STP16CP05MTR
-LIBS:2907a
-LIBS:MCP7940N
-EELAYER 43  0
+EESchema Schematic File Version 2  date Sun 18 Dec 2011 09:06:09 AM CST
+LIBS:power,/home/mike/compile/Binary-Burst-Clock/board/libraries/k3000,/home/mike/compile/Binary-Burst-Clock/board/libraries/STP16CP05MTR,/home/mike/compile/Binary-Burst-Clock/board/libraries/MCP7940N,/home/mike/compile/Binary-Burst-Clock/board/libraries/attiny,/home/mike/compile/Binary-Burst-Clock/board/libraries/2907a,device,transistors,conn,linear,regul,74xx,cmos4000,adc-dac,memory,xilinx,special,microcontrollers,dsp,microchip,analog_switches,motorola,texas,intel,audio,interface,digital-audio,philips,display,cypress,siliconi,opto,atmel,contrib,valves
+EELAYER 24  0
 EELAYER END
 $Descr A4 11700 8267
-encoding utf-8
 Sheet 1 1
 Title ""
 Date "18 dec 2011"
@@ -47,15 +13,42 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+Text Label 4050 6850 2    60   ~ 0
+Vbat
 $Comp
-L MCP7940N U2
-U 1 1 4EED7CB9
-P 5450 2700
-F 0 "U2" H 5850 3100 50  0000 C CNN
-F 1 "MCP7940N" H 5200 3100 50  0000 C CNN
-	1    5450 2700
+L K3000 CONN1
+U 1 1 4EEE0062
+P 4600 6650
+F 0 "CONN1" H 4600 6400 60  0000 C CNN
+F 1 "K3000" H 4550 6900 60  0000 C CNN
+	1    4600 6650
 	1    0    0    -1  
 $EndComp
+Text Notes 2550 6050 0    60   ~ 0
+Power (USB mini-b)
+NoConn ~ 3400 6900
+NoConn ~ 3400 6750
+Connection ~ 2550 7200
+Wire Wire Line
+	2550 6900 2650 6900
+Wire Wire Line
+	2550 7350 2550 6900
+Wire Wire Line
+	2650 6750 2550 6750
+Wire Wire Line
+	2550 6750 2550 6600
+Wire Wire Line
+	2650 7000 2650 7100
+Wire Wire Line
+	3400 7000 3400 7100
+Wire Wire Line
+	3400 7100 2650 7100
+Wire Wire Line
+	1850 7050 1850 7250
+Wire Wire Line
+	1200 7050 1200 7250
+Wire Wire Line
+	1550 6450 1550 6650
 Wire Wire Line
 	6400 3700 6400 3900
 Wire Wire Line
@@ -232,6 +225,143 @@ Wire Wire Line
 	4700 3900 4150 3900
 Wire Wire Line
 	4150 3900 4150 4100
+Wire Wire Line
+	1200 6450 1200 6650
+Wire Wire Line
+	1850 6450 1850 6650
+Wire Wire Line
+	1550 7050 1550 7250
+Wire Wire Line
+	3050 7200 3050 7100
+Connection ~ 3050 7100
+$Comp
+L +5V #PWR?
+U 1 1 4EEDF02B
+P 2550 6600
+F 0 "#PWR?" H 2550 6690 20  0001 C CNN
+F 1 "+5V" H 2550 6690 30  0000 C CNN
+	1    2550 6600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EEDF025
+P 2550 7350
+F 0 "#PWR?" H 2550 7350 30  0001 C CNN
+F 1 "GND" H 2550 7280 30  0001 C CNN
+	1    2550 7350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R3
+U 1 1 4EEDEFC3
+P 2800 7200
+F 0 "R3" V 2880 7200 50  0000 C CNN
+F 1 "10M" V 2800 7200 50  0000 C CNN
+	1    2800 7200
+	0    1    1    0   
+$EndComp
+$Comp
+L USB J1
+U 1 1 4EEDEEC4
+P 3050 6550
+F 0 "J1" H 3000 6950 60  0000 C CNN
+F 1 "USB" V 2800 6700 60  0000 C CNN
+	1    3050 6550
+	1    0    0    -1  
+$EndComp
+Text Notes 1200 6150 0    60   ~ 0
+IC Decoupling
+$Comp
+L GND #PWR?
+U 1 1 4EEDEE82
+P 1200 7250
+F 0 "#PWR?" H 1200 7250 30  0001 C CNN
+F 1 "GND" H 1200 7180 30  0001 C CNN
+	1    1200 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EEDEE7E
+P 1550 7250
+F 0 "#PWR?" H 1550 7250 30  0001 C CNN
+F 1 "GND" H 1550 7180 30  0001 C CNN
+	1    1550 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EEDEE7A
+P 1850 7250
+F 0 "#PWR?" H 1850 7250 30  0001 C CNN
+F 1 "GND" H 1850 7180 30  0001 C CNN
+	1    1850 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 4EEDEE76
+P 1850 6450
+F 0 "#PWR?" H 1850 6540 20  0001 C CNN
+F 1 "+5V" H 1850 6540 30  0000 C CNN
+	1    1850 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 4EEDEE70
+P 1550 6450
+F 0 "#PWR?" H 1550 6540 20  0001 C CNN
+F 1 "+5V" H 1550 6540 30  0000 C CNN
+	1    1550 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 4EEDEE6D
+P 1200 6450
+F 0 "#PWR?" H 1200 6540 20  0001 C CNN
+F 1 "+5V" H 1200 6540 30  0000 C CNN
+	1    1200 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C3
+U 1 1 4EEDEE1F
+P 1850 6850
+F 0 "C3" H 1900 6950 50  0000 L CNN
+F 1 "0.1uf" H 1900 6750 50  0000 L CNN
+	1    1850 6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C2
+U 1 1 4EEDEE1C
+P 1550 6850
+F 0 "C2" H 1600 6950 50  0000 L CNN
+F 1 "0.1uf" H 1600 6750 50  0000 L CNN
+	1    1550 6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C1
+U 1 1 4EEDEE10
+P 1200 6850
+F 0 "C1" H 1250 6950 50  0000 L CNN
+F 1 "0.1uf" H 1250 6750 50  0000 L CNN
+	1    1200 6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCP7940N U2
+U 1 1 4EED7CB9
+P 5450 2700
+F 0 "U2" H 5850 3100 50  0000 C CNN
+F 1 "MCP7940N" H 5200 3100 50  0000 C CNN
+	1    5450 2700
+	1    0    0    -1  
+$EndComp
 $Comp
 L GND #PWR?
 U 1 1 4EED7A48
