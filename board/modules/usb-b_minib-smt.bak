@@ -1,0 +1,156 @@
+PCBNEW-LibModule-V1  Thu 22 Dec 2011 09:46:41 PM CST
+# encoding utf-8
+$INDEX
+usb-b_minib-smt
+usb-mini-b_154-15320-E
+$EndINDEX
+$MODULE usb-b_minib-smt
+Po 0 0 0 15 4EF3D837 00000000 ~~
+Li usb-b_minib-smt
+Sc 00000000
+AR
+Op 0 0 0
+T0 0 0 600 600 0 120 N V 21 N "usb-b_minib-smt"
+T1 0 0 600 600 0 120 N V 21 N "VAL**"
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po -1181 1752
+$EndPAD
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po -1181 -1752
+$EndPAD
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po 984 1772
+$EndPAD
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po 984 -1772
+$EndPAD
+$PAD
+Sh "" C 354 354 0 0 0
+Dr 0 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 0 -866
+$EndPAD
+$PAD
+Sh "1" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po 0 591
+$EndPAD
+$EndMODULE  usb-b_minib-smt
+$MODULE usb-mini-b_154-15320-E
+Po 0 0 0 15 4EF3F998 00000000 ~~
+Li usb-mini-b_154-15320-E
+Kw USB
+Sc 00000000
+AR usb-mini-b_154-15320-E
+Op 0 0 0
+At SMD 
+T0 394 2854 600 600 0 120 N V 21 N "15320-E"
+T1 0 -2854 600 600 0 120 N V 21 N "VAL**"
+DS -2067 -1516 -2067 1516 150 21
+DS -2323 -1516 1220 -1516 150 21
+DS -2323 -1516 -2323 1516 150 21
+DS -2323 1516 1220 1516 150 21
+DS 1220 1516 1220 -1516 150 21
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po -1181 1752
+$EndPAD
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po -1181 -1752
+$EndPAD
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po 984 1772
+$EndPAD
+$PAD
+Sh "" R 984 787 0 0 0
+Dr 0 0 0
+At HOLE N 00E08000
+Ne 0 ""
+Po 984 -1772
+$EndPAD
+$PAD
+Sh "" C 354 354 0 0 0
+Dr 354 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0 -866
+$EndPAD
+$PAD
+Sh "" C 354 354 0 0 0
+Dr 354 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0 866
+$EndPAD
+$PAD
+Sh "1" R 906 197 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1024 -630
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "2" R 906 197 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1024 -315
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "3" R 906 197 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1024 0
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "4" R 906 197 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1024 315
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "5" R 906 197 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1024 630
+.LocalClearance 39
+$EndPAD
+$EndMODULE  usb-mini-b_154-15320-E
+$EndLIBRARY

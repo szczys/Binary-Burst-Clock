@@ -1,4 +1,5 @@
-EESchema-LIBRARY Version 2.3  Date: Sun 18 Dec 2011 09:01:45 AM CST
+EESchema-LIBRARY Version 2.3  Date: Fri 23 Dec 2011 01:44:58 PM CST
+#encoding utf-8
 #
 # K3000
 #
@@ -6,10 +7,10 @@ DEF K3000 CONN 0 0 Y Y 1 F N
 F0 "CONN" 0 -250 60 H V C CNN
 F1 "K3000" -50 250 60 H V C CNN
 DRAW
-S 0 100 50 -100 0 0 0 F
 S -100 200 -50 -200 0 0 0 F
+S 0 100 50 -100 0 0 0 F
+X Bat_Pos 1 -500 0 400 R 50 50 1 1 w
 X Bat_Neg 2 450 0 400 L 50 50 1 1 W
-X Bat_Pos 1 -500 0 400 R 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #

@@ -1,0 +1,33 @@
+PCBNEW-LibModule-V1  Thu 22 Dec 2011 09:30:33 PM CST
+# encoding utf-8
+$INDEX
+Crystal_tuning-fork
+$EndINDEX
+$MODULE Crystal_tuning-fork
+Po 0 0 0 15 4EF3F5A1 4EF3F202 ~~
+Li Crystal_tuning-fork
+Sc 4EF3F202
+AR 
+Op 0 0 0
+T0 -1575 1181 600 600 0 120 N I 21 N "Crystal"
+T1 -1929 0 600 600 0 120 N V 21 N "VAL**"
+DS 0 -630 -3268 -630 150 21
+DS -3268 -630 -3268 630 150 21
+DS -3268 630 0 630 150 21
+DS 0 630 0 -630 150 21
+$PAD
+Sh "1" C 473 473 0 0 0
+Dr 315 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 1181 -472
+$EndPAD
+$PAD
+Sh "2" C 473 473 0 0 0
+Dr 315 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 1181 473
+$EndPAD
+$EndMODULE  Crystal_tuning-fork
+$EndLIBRARY

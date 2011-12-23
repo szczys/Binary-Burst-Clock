@@ -1,0 +1,321 @@
+# EESchema Netlist Version 1.1 created  Fri 23 Dec 2011 01:49:19 PM CST
+(
+ ( /4EEDEE10 SM0805 C1 0.1uf
+  ( 1 +5V )
+  ( 2 GND )
+ )
+ ( /4EEDEE1C SM0805 C2 0.1uf
+  ( 1 +5V )
+  ( 2 GND )
+ )
+ ( /4EEDEE1F SM0805 C3 0.1uf
+  ( 1 +5V )
+  ( 2 GND )
+ )
+ ( /4EF4D75F pin-array-sm-3x2 CON1 AVR-ISP-6-FIXED
+  ( 1 /PA5 )
+  ( 2 +5V )
+  ( 3 /SCL )
+  ( 4 /SDA )
+  ( 5 /Reset )
+  ( 6 GND )
+ )
+ ( /4EF4DA41 CR1220_534-3000 CONN1 K3000
+  ( 1 +BATT )
+  ( 2 GND )
+ )
+ ( /4EEDEEC4 usb-mini-b_154-15320-E J1 USB
+  ( 1 +5V )
+  ( 2 ? )
+  ( 3 ? )
+  ( 4 GND )
+  ( 5 N-000045 )
+  ( 6 N-000045 )
+ )
+ ( /4EED068C PIN_ARRAY_5x1 P1 1:00
+  ( 1 /OUT1 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED0691 PIN_ARRAY_5x1 P2 2:00
+  ( 1 /OUT2 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED0694 PIN_ARRAY_5x1 P3 3:00
+  ( 1 /OUT3 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED0699 PIN_ARRAY_5x1 P4 4:00
+  ( 1 /OUT4 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED069E PIN_ARRAY_5x1 P5 5:00
+  ( 1 /OUT5 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED06A4 PIN_ARRAY_5x1 P6 6:00
+  ( 1 /OUT6 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED06A8 PIN_ARRAY_5x1 P7 7:00
+  ( 1 /OUT7 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED06B3 PIN_ARRAY_5x1 P8 8:00
+  ( 1 /OUT8 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED06B9 PIN_ARRAY_5x1 P9 9:00
+  ( 1 /OUT9 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED06BD PIN_ARRAY_5x1 P10 10:00
+  ( 1 /OUT10 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED06C0 PIN_ARRAY_5x1 P11 11:00
+  ( 1 /OUT11 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED0685 PIN_ARRAY_5x1 P12 12:00
+  ( 1 /OUT0 )
+  ( 2 /Blue_Bit0 )
+  ( 3 /Blue_Bit1 )
+  ( 4 /Blue_Bit2 )
+  ( 5 /Red )
+ )
+ ( /4EED05F0 SOT23EBC Q1 2907A
+  ( B N-000014 )
+  ( C /Blue_Bit0 )
+  ( E +5V )
+ )
+ ( /4EED05F4 SOT23EBC Q2 2907A
+  ( B N-000041 )
+  ( C /Blue_Bit1 )
+  ( E +5V )
+ )
+ ( /4EED05FA SOT23EBC Q3 2907A
+  ( B N-000012 )
+  ( C /Blue_Bit2 )
+  ( E +5V )
+ )
+ ( /4EED05FC SOT23EBC Q4 2907A
+  ( B N-000043 )
+  ( C /Red )
+  ( E +5V )
+ )
+ ( /4EEE035F SM0805 R1 10k
+  ( 1 +5V )
+  ( 2 /Reset )
+ )
+ ( /4EEE12C1 SM0805 R2 2056
+  ( 1 +5V )
+  ( 2 /SDA )
+ )
+ ( /4EEE12CD SM0805 R3 2056
+  ( 1 +5V )
+  ( 2 /SCL )
+ )
+ ( /4EEDEFC3 SM0805 R4 10M
+  ( 1 N-000045 )
+  ( 2 GND )
+ )
+ ( /4EEE114D SM0805 R5 1k
+  ( 1 /Blue0 )
+  ( 2 N-000014 )
+ )
+ ( /4EEE1136 SM0805 R6 1k
+  ( 1 /Blue1 )
+  ( 2 N-000041 )
+ )
+ ( /4EEE112C SM0805 R7 1k
+  ( 1 /Blue2 )
+  ( 2 N-000012 )
+ )
+ ( /4EEE169E SM0805 R8 1k
+  ( 1 /Red0 )
+  ( 2 N-000043 )
+ )
+ ( /4EEE11B0 SM0805 R9 2056
+  ( 1 GND )
+  ( 2 N-000017 )
+ )
+ ( /4EF4D955 MJTP1230 SW1 SW_PUSH
+  ( 1 /PA5 )
+  ( 2 GND )
+ )
+ ( /4EF4D95D MJTP1230 SW2 SW_PUSH
+  ( 1 /PA7 )
+  ( 2 GND )
+ )
+ ( /4EECE1CB SO14E U1 ATTINY44
+  ( 1 +5V )
+  ( 2 /Blue0 )
+  ( 3 /Blue1 )
+  ( 4 /Reset )
+  ( 5 /Blue2 )
+  ( 6 /PA7 )
+  ( 7 /SDA )
+  ( 8 /PA5 )
+  ( 9 /SCL )
+  ( 10 /Latch )
+  ( 11 /Clock )
+  ( 12 /Data )
+  ( 13 /Red0 )
+  ( 14 GND )
+ )
+ ( /4EED7CB9 SO8E U2 MCP7940N
+  ( 1 N-000010 )
+  ( 2 N-000004 )
+  ( 3 +BATT )
+  ( 4 GND )
+  ( 5 /SDA )
+  ( 6 /SCL )
+  ( 7 ? )
+  ( 8 +5V )
+ )
+ ( /4EECE1BF SO24E U3 STP16CP05MTR
+  ( 1 GND )
+  ( 2 /Data )
+  ( 3 /Clock )
+  ( 4 /Latch )
+  ( 5 /OUT0 )
+  ( 6 /OUT1 )
+  ( 7 /OUT2 )
+  ( 8 /OUT3 )
+  ( 9 /OUT4 )
+  ( 10 /OUT5 )
+  ( 11 /OUT6 )
+  ( 12 /OUT7 )
+  ( 13 /OUT8 )
+  ( 14 /OUT9 )
+  ( 15 /OUT10 )
+  ( 16 /OUT11 )
+  ( 17 ? )
+  ( 18 ? )
+  ( 19 ? )
+  ( 20 ? )
+  ( 21 GND )
+  ( 22 ? )
+  ( 23 N-000017 )
+  ( 24 +5V )
+ )
+ ( /4EEE08F7 Crystal_tuning-fork X1 32.768_kHz_CRYSTAL
+  ( 1 N-000010 )
+  ( 2 N-000004 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ SM*
+ C?
+ C1-1
+$endlist
+$component C2
+ SM*
+ C?
+ C1-1
+$endlist
+$component C3
+ SM*
+ C?
+ C1-1
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R4
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R6
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R7
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R8
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R9
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$endfootprintlist
+}

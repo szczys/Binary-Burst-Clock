@@ -1,0 +1,83 @@
+eeschema (2011-05-25)-stable  >> Creation date: Mon 19 Dec 2011 01:39:51 PM CST
+
+#Cmp ( order = Reference ) (with SubCmp)
+| C1         0.1uf       
+| C2         0.1uf       
+| C3         0.1uf       
+| CONN1      K3000       
+| J1         USB         
+| J2         AVR-ISP-6   
+| P1         CONN_5      
+| P2         CONN_5      
+| P3         CONN_5      
+| P4         CONN_5      
+| P5         CONN_5      
+| P6         CONN_5      
+| P7         CONN_5      
+| P8         CONN_5      
+| P9         CONN_5      
+| P10        CONN_5      
+| P11        CONN_5      
+| P12        CONN_5      
+| Q1         2907A       
+| Q2         2907A       
+| Q3         2907A       
+| Q4         2907A       
+| R1         10k         
+| R2         2056        
+| R3         2056        
+| R4         10M         
+| R5         1k          
+| R6         1k          
+| R7         1k          
+| R8         1k          
+| R9         2056        
+| SW1        SW_PUSH     
+| SW2        SW_PUSH     
+| U1         ATTINY44    
+| U2         MCP7940N    
+| U3         STP16CP05MTR
+| X1         32.768 kHz CRYSTAL
+#End Cmp
+
+#Cmp ( order = Value ) (with SubCmp)
+| 0.1uf        C1        
+| 0.1uf        C2        
+| 0.1uf        C3        
+| 10k          R1        
+| 10M          R4        
+| 1k           R5        
+| 1k           R6        
+| 1k           R7        
+| 1k           R8        
+| 2056         R2        
+| 2056         R3        
+| 2056         R9        
+| 2907A        Q1        
+| 2907A        Q2        
+| 2907A        Q3        
+| 2907A        Q4        
+| 32.768 kHz CRYSTAL X1        
+| ATTINY44     U1        
+| AVR-ISP-6    J2        
+| CONN_5       P1        
+| CONN_5       P2        
+| CONN_5       P3        
+| CONN_5       P4        
+| CONN_5       P5        
+| CONN_5       P6        
+| CONN_5       P7        
+| CONN_5       P8        
+| CONN_5       P9        
+| CONN_5       P10       
+| CONN_5       P11       
+| CONN_5       P12       
+| K3000        CONN1     
+| MCP7940N     U2        
+| STP16CP05MTR U3        
+| SW_PUSH      SW1       
+| SW_PUSH      SW2       
+| USB          J1        
+#End Cmp
+
+#End List
