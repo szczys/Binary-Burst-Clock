@@ -1,4 +1,4 @@
-PCBNEW-LibModule-V1  Thu 22 Dec 2011 09:47:23 PM CST
+PCBNEW-LibModule-V1  Sun 25 Dec 2011 07:34:52 PM CST
 # encoding utf-8
 $INDEX
 usb-b_minib-smt
@@ -56,7 +56,7 @@ Po 0 591
 $EndPAD
 $EndMODULE  usb-b_minib-smt
 $MODULE usb-mini-b_154-15320-E
-Po 0 0 0 15 4EF3F998 00000000 ~~
+Po 0 0 0 15 4EF7CF32 00000000 ~~
 Li usb-mini-b_154-15320-E
 Kw USB
 Sc 00000000
@@ -92,9 +92,9 @@ Ne 0 ""
 Po 984 1772
 $EndPAD
 $PAD
-Sh "" R 984 787 0 0 0
+Sh "6" R 984 787 0 0 0
 Dr 0 0 0
-At HOLE N 00E08000
+At SMD N 00888000
 Ne 0 ""
 Po 984 -1772
 $EndPAD

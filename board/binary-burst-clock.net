@@ -1,267 +1,245 @@
-# EESchema Netlist Version 1.1 created  Fri 23 Dec 2011 01:49:19 PM CST
+# EESchema Netlist Version 1.1 created  Sun 25 Dec 2011 07:47:48 PM CST
 (
- ( /4EEDEE10 SM0805 C1 0.1uf
-  ( 1 +5V )
-  ( 2 GND )
+ ( /4EF4DA41 $noname  CONN1 K3000 {Lib=K3000}
+  (    1 +BATT )
+  (    2 GND )
  )
- ( /4EEDEE1C SM0805 C2 0.1uf
-  ( 1 +5V )
-  ( 2 GND )
+ ( /4EF4D95D $noname  SW2 Minutes {Lib=SW_PUSH}
+  (    1 /PA7 )
+  (    2 GND )
  )
- ( /4EEDEE1F SM0805 C3 0.1uf
-  ( 1 +5V )
-  ( 2 GND )
+ ( /4EF4D955 $noname  SW1 Hours {Lib=SW_PUSH}
+  (    1 /PA5 )
+  (    2 GND )
  )
- ( /4EF4D75F pin-array-sm-3x2 CON1 AVR-ISP-6-FIXED
-  ( 1 /PA5 )
-  ( 2 +5V )
-  ( 3 /SCL )
-  ( 4 /SDA )
-  ( 5 /Reset )
-  ( 6 GND )
+ ( /4EF4D75F AVR_ISP_6-fixed  CON1 AVR-ISP-6-FIXED {Lib=AVR-ISP-6-FIXED}
+  (    1 /PA5 )
+  (    2 +5V )
+  (    3 /SCL )
+  (    4 /SDA )
+  (    5 /Reset )
+  (    6 GND )
  )
- ( /4EF4DA41 CR1220_534-3000 CONN1 K3000
-  ( 1 +BATT )
-  ( 2 GND )
+ ( /4EEE169E $noname  R8 1k {Lib=R}
+  (    1 /Red0 )
+  (    2 N-000017 )
  )
- ( /4EEDEEC4 usb-mini-b_154-15320-E J1 USB
-  ( 1 +5V )
-  ( 2 ? )
-  ( 3 ? )
-  ( 4 GND )
-  ( 5 N-000045 )
-  ( 6 N-000045 )
+ ( /4EEE12CD $noname  R3 2056 {Lib=R}
+  (    1 +5V )
+  (    2 /SCL )
  )
- ( /4EED068C PIN_ARRAY_5x1 P1 1:00
-  ( 1 /OUT1 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEE12C1 $noname  R2 2056 {Lib=R}
+  (    1 +5V )
+  (    2 /SDA )
  )
- ( /4EED0691 PIN_ARRAY_5x1 P2 2:00
-  ( 1 /OUT2 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEE11B0 $noname  R9 2056 {Lib=R}
+  (    1 GND )
+  (    2 N-000044 )
  )
- ( /4EED0694 PIN_ARRAY_5x1 P3 3:00
-  ( 1 /OUT3 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEE114D $noname  R5 1k {Lib=R}
+  (    1 /Blue0 )
+  (    2 N-000043 )
  )
- ( /4EED0699 PIN_ARRAY_5x1 P4 4:00
-  ( 1 /OUT4 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEE1136 $noname  R6 1k {Lib=R}
+  (    1 /Blue1 )
+  (    2 N-000015 )
  )
- ( /4EED069E PIN_ARRAY_5x1 P5 5:00
-  ( 1 /OUT5 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEE112C $noname  R7 1k {Lib=R}
+  (    1 /Blue2 )
+  (    2 N-000041 )
  )
- ( /4EED06A4 PIN_ARRAY_5x1 P6 6:00
-  ( 1 /OUT6 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEE08F7 $noname  X1 32.768 {Lib=CRYSTAL}
+  (    1 N-000031 )
+  (    2 N-000012 )
  )
- ( /4EED06A8 PIN_ARRAY_5x1 P7 7:00
-  ( 1 /OUT7 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEE035F $noname  R1 10k {Lib=R}
+  (    1 +5V )
+  (    2 /Reset )
  )
- ( /4EED06B3 PIN_ARRAY_5x1 P8 8:00
-  ( 1 /OUT8 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEDEFC3 $noname  R4 10M {Lib=R}
+  (    1 N-000005 )
+  (    2 GND )
  )
- ( /4EED06B9 PIN_ARRAY_5x1 P9 9:00
-  ( 1 /OUT9 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEDEEC4 $noname  J1 USB {Lib=USB}
+  (    1 +5V )
+  (    2 ? )
+  (    3 ? )
+  (    4 GND )
+  (    5 N-000005 )
+  (    6 ? )
  )
- ( /4EED06BD PIN_ARRAY_5x1 P10 10:00
-  ( 1 /OUT10 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEDEE1F $noname  C3 0.1uf {Lib=C}
+  (    1 +5V )
+  (    2 GND )
  )
- ( /4EED06C0 PIN_ARRAY_5x1 P11 11:00
-  ( 1 /OUT11 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEDEE1C $noname  C2 0.1uf {Lib=C}
+  (    1 +5V )
+  (    2 GND )
  )
- ( /4EED0685 PIN_ARRAY_5x1 P12 12:00
-  ( 1 /OUT0 )
-  ( 2 /Blue_Bit0 )
-  ( 3 /Blue_Bit1 )
-  ( 4 /Blue_Bit2 )
-  ( 5 /Red )
+ ( /4EEDEE10 $noname  C1 0.1uf {Lib=C}
+  (    1 +5V )
+  (    2 GND )
  )
- ( /4EED05F0 SOT23EBC Q1 2907A
-  ( B N-000014 )
-  ( C /Blue_Bit0 )
-  ( E +5V )
+ ( /4EED7CB9 $noname  U2 MCP7940N {Lib=MCP7940N}
+  (    1 N-000031 )
+  (    2 N-000012 )
+  (    3 +BATT )
+  (    4 GND )
+  (    5 /SDA )
+  (    6 /SCL )
+  (    7 ? )
+  (    8 +5V )
  )
- ( /4EED05F4 SOT23EBC Q2 2907A
-  ( B N-000041 )
-  ( C /Blue_Bit1 )
-  ( E +5V )
+ ( /4EED06C0 $noname  P11 11:00 {Lib=CONN_5}
+  (    1 /OUT11 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EED05FA SOT23EBC Q3 2907A
-  ( B N-000012 )
-  ( C /Blue_Bit2 )
-  ( E +5V )
+ ( /4EED06BD $noname  P10 10:00 {Lib=CONN_5}
+  (    1 /OUT10 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EED05FC SOT23EBC Q4 2907A
-  ( B N-000043 )
-  ( C /Red )
-  ( E +5V )
+ ( /4EED06B9 $noname  P9 9:00 {Lib=CONN_5}
+  (    1 /OUT9 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE035F SM0805 R1 10k
-  ( 1 +5V )
-  ( 2 /Reset )
+ ( /4EED06B3 $noname  P8 8:00 {Lib=CONN_5}
+  (    1 /OUT8 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE12C1 SM0805 R2 2056
-  ( 1 +5V )
-  ( 2 /SDA )
+ ( /4EED06A8 $noname  P7 7:00 {Lib=CONN_5}
+  (    1 /OUT7 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE12CD SM0805 R3 2056
-  ( 1 +5V )
-  ( 2 /SCL )
+ ( /4EED06A4 $noname  P6 6:00 {Lib=CONN_5}
+  (    1 /OUT6 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEDEFC3 SM0805 R4 10M
-  ( 1 N-000045 )
-  ( 2 GND )
+ ( /4EED069E $noname  P5 5:00 {Lib=CONN_5}
+  (    1 /OUT5 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE114D SM0805 R5 1k
-  ( 1 /Blue0 )
-  ( 2 N-000014 )
+ ( /4EED0699 $noname  P4 4:00 {Lib=CONN_5}
+  (    1 /OUT4 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE1136 SM0805 R6 1k
-  ( 1 /Blue1 )
-  ( 2 N-000041 )
+ ( /4EED0694 $noname  P3 3:00 {Lib=CONN_5}
+  (    1 /OUT3 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE112C SM0805 R7 1k
-  ( 1 /Blue2 )
-  ( 2 N-000012 )
+ ( /4EED0691 $noname  P2 2:00 {Lib=CONN_5}
+  (    1 /OUT2 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE169E SM0805 R8 1k
-  ( 1 /Red0 )
-  ( 2 N-000043 )
+ ( /4EED068C $noname  P1 1:00 {Lib=CONN_5}
+  (    1 /OUT1 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EEE11B0 SM0805 R9 2056
-  ( 1 GND )
-  ( 2 N-000017 )
+ ( /4EED0685 $noname  P12 12:00 {Lib=CONN_5}
+  (    1 /OUT0 )
+  (    2 /Blue_Bit0 )
+  (    3 /Blue_Bit1 )
+  (    4 /Blue_Bit2 )
+  (    5 /Red )
  )
- ( /4EF4D955 MJTP1230 SW1 SW_PUSH
-  ( 1 /PA5 )
-  ( 2 GND )
+ ( /4EED05FC $noname  Q4 2907A {Lib=2907A}
+  (    1 +5V )
+  (    2 N-000017 )
+  (    3 /Red )
  )
- ( /4EF4D95D MJTP1230 SW2 SW_PUSH
-  ( 1 /PA7 )
-  ( 2 GND )
+ ( /4EED05FA $noname  Q3 2907A {Lib=2907A}
+  (    1 +5V )
+  (    2 N-000041 )
+  (    3 /Blue_Bit2 )
  )
- ( /4EECE1CB SO14E U1 ATTINY44
-  ( 1 +5V )
-  ( 2 /Blue0 )
-  ( 3 /Blue1 )
-  ( 4 /Reset )
-  ( 5 /Blue2 )
-  ( 6 /PA7 )
-  ( 7 /SDA )
-  ( 8 /PA5 )
-  ( 9 /SCL )
-  ( 10 /Latch )
-  ( 11 /Clock )
-  ( 12 /Data )
-  ( 13 /Red0 )
-  ( 14 GND )
+ ( /4EED05F4 $noname  Q2 2907A {Lib=2907A}
+  (    1 +5V )
+  (    2 N-000015 )
+  (    3 /Blue_Bit1 )
  )
- ( /4EED7CB9 SO8E U2 MCP7940N
-  ( 1 N-000010 )
-  ( 2 N-000004 )
-  ( 3 +BATT )
-  ( 4 GND )
-  ( 5 /SDA )
-  ( 6 /SCL )
-  ( 7 ? )
-  ( 8 +5V )
+ ( /4EED05F0 $noname  Q1 2907A {Lib=2907A}
+  (    1 +5V )
+  (    2 N-000043 )
+  (    3 /Blue_Bit0 )
  )
- ( /4EECE1BF SO24E U3 STP16CP05MTR
-  ( 1 GND )
-  ( 2 /Data )
-  ( 3 /Clock )
-  ( 4 /Latch )
-  ( 5 /OUT0 )
-  ( 6 /OUT1 )
-  ( 7 /OUT2 )
-  ( 8 /OUT3 )
-  ( 9 /OUT4 )
-  ( 10 /OUT5 )
-  ( 11 /OUT6 )
-  ( 12 /OUT7 )
-  ( 13 /OUT8 )
-  ( 14 /OUT9 )
-  ( 15 /OUT10 )
-  ( 16 /OUT11 )
-  ( 17 ? )
-  ( 18 ? )
-  ( 19 ? )
-  ( 20 ? )
-  ( 21 GND )
-  ( 22 ? )
-  ( 23 N-000017 )
-  ( 24 +5V )
+ ( /4EECE1CB $noname  U1 ATTINY44 {Lib=ATTINY24-44-84/DIP-SO}
+  (    1 +5V )
+  (    2 /Blue0 )
+  (    3 /Blue1 )
+  (    4 /Reset )
+  (    5 /Blue2 )
+  (    6 /PA7 )
+  (    7 /SDA )
+  (    8 /PA5 )
+  (    9 /SCL )
+  (   10 /Latch )
+  (   11 /Clock )
+  (   12 /Data )
+  (   13 /Red0 )
+  (   14 GND )
  )
- ( /4EEE08F7 Crystal_tuning-fork X1 32.768_kHz_CRYSTAL
-  ( 1 N-000010 )
-  ( 2 N-000004 )
+ ( /4EECE1BF $noname  U3 STP16CP05MTR {Lib=STP16CP05MTR}
+  (    1 GND )
+  (    2 /Data )
+  (    3 /Clock )
+  (    4 /Latch )
+  (    5 /OUT0 )
+  (    6 /OUT1 )
+  (    7 /OUT2 )
+  (    8 /OUT3 )
+  (    9 /OUT4 )
+  (   10 /OUT5 )
+  (   11 /OUT6 )
+  (   12 /OUT7 )
+  (   13 /OUT8 )
+  (   14 /OUT9 )
+  (   15 /OUT10 )
+  (   16 /OUT11 )
+  (   17 ? )
+  (   18 ? )
+  (   19 ? )
+  (   20 ? )
+  (   21 GND )
+  (   22 ? )
+  (   23 N-000044 )
+  (   24 +5V )
  )
 )
 *
 { Allowed footprints by component:
-$component C1
- SM*
- C?
- C1-1
-$endlist
-$component C2
- SM*
- C?
- C1-1
-$endlist
-$component C3
- SM*
- C?
- C1-1
-$endlist
-$component R1
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R2
+$component R8
  R?
  SM0603
  SM0805
@@ -275,7 +253,14 @@ $component R3
  R?-*
  SM1206
 $endlist
-$component R4
+$component R2
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R9
  R?
  SM0603
  SM0805
@@ -303,19 +288,229 @@ $component R7
  R?-*
  SM1206
 $endlist
-$component R8
+$component R1
  R?
  SM0603
  SM0805
  R?-*
  SM1206
 $endlist
-$component R9
+$component R4
  R?
  SM0603
  SM0805
  R?-*
  SM1206
+$endlist
+$component C3
+ SM*
+ C?
+ C1-1
+$endlist
+$component C2
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1
+ SM*
+ C?
+ C1-1
 $endlist
 $endfootprintlist
 }
+{ Pin List by Nets
+Net 1 "/Blue_Bit1" "Blue_Bit1"
+ P12 3
+ P10 3
+ P2 3
+ Q2 3
+ P9 3
+ P11 3
+ P3 3
+ P4 3
+ P5 3
+ P1 3
+ P6 3
+ P7 3
+ P8 3
+Net 5 "" ""
+ R4 1
+ J1 5
+Net 6 "/Reset" "Reset"
+ U1 4
+ R1 2
+ CON1 5
+Net 12 "" ""
+ X1 2
+ U2 2
+Net 13 "GND" "GND"
+ U3 21
+ U3 1
+ U1 14
+ U2 4
+ C3 2
+ C2 2
+ C1 2
+ R4 2
+ SW2 2
+ SW1 2
+ CON1 6
+ R9 1
+ J1 4
+ CONN1 2
+Net 14 "+5V" "+5V"
+ CON1 2
+ R2 1
+ R3 1
+ C2 1
+ Q2 1
+ J1 1
+ R1 1
+ U2 8
+ Q1 1
+ C1 1
+ Q4 1
+ U1 1
+ C3 1
+ Q3 1
+ U3 24
+Net 15 "" ""
+ R6 2
+ Q2 2
+Net 16 "/Blue_Bit2" "Blue_Bit2"
+ P1 4
+ P12 4
+ P8 4
+ P7 4
+ P3 4
+ P6 4
+ P5 4
+ Q3 3
+ P4 4
+ P9 4
+ P10 4
+ P11 4
+ P2 4
+Net 17 "" ""
+ Q4 2
+ R8 2
+Net 18 "/OUT1" "OUT1"
+ P1 1
+ U3 6
+Net 20 "/Data" "Data"
+ U3 2
+ U1 12
+Net 21 "/Latch" "Latch"
+ U3 4
+ U1 10
+Net 22 "/OUT11" "OUT11"
+ U3 16
+ P11 1
+Net 23 "/OUT8" "OUT8"
+ P8 1
+ U3 13
+Net 24 "/OUT9" "OUT9"
+ P9 1
+ U3 14
+Net 25 "/OUT10" "OUT10"
+ P10 1
+ U3 15
+Net 26 "/Blue_Bit0" "Blue_Bit0"
+ Q1 3
+ P5 2
+ P2 2
+ P12 2
+ P8 2
+ P11 2
+ P10 2
+ P9 2
+ P1 2
+ P3 2
+ P4 2
+ P7 2
+ P6 2
+Net 27 "/OUT0" "OUT0"
+ U3 5
+ P12 1
+Net 28 "/OUT2" "OUT2"
+ U3 7
+ P2 1
+Net 29 "/OUT3" "OUT3"
+ U3 8
+ P3 1
+Net 30 "/OUT4" "OUT4"
+ U3 9
+ P4 1
+Net 31 "" ""
+ X1 1
+ U2 1
+Net 32 "/OUT5" "OUT5"
+ P5 1
+ U3 10
+Net 33 "/Red" "Red"
+ P11 5
+ P3 5
+ P10 5
+ P6 5
+ P7 5
+ P1 5
+ P9 5
+ P12 5
+ P8 5
+ P2 5
+ P4 5
+ Q4 3
+ P5 5
+Net 34 "/OUT6" "OUT6"
+ U3 11
+ P6 1
+Net 35 "/OUT7" "OUT7"
+ U3 12
+ P7 1
+Net 36 "/SDA" "SDA"
+ U2 5
+ U1 7
+ R2 2
+ CON1 4
+Net 37 "/Blue2" "Blue2"
+ U1 5
+ R7 1
+Net 38 "/Blue0" "Blue0"
+ R5 1
+ U1 2
+Net 39 "/Clock" "Clock"
+ U1 11
+ U3 3
+Net 40 "/Red0" "Red0"
+ U1 13
+ R8 1
+Net 41 "" ""
+ R7 2
+ Q3 2
+Net 42 "/Blue1" "Blue1"
+ R6 1
+ U1 3
+Net 43 "" ""
+ R5 2
+ Q1 2
+Net 44 "" ""
+ R9 2
+ U3 23
+Net 45 "/PA7" "PA7"
+ SW2 1
+ U1 6
+Net 46 "/PA5" "PA5"
+ SW1 1
+ CON1 1
+ U1 8
+Net 47 "+BATT" "+BATT"
+ U2 3
+ CONN1 1
+Net 48 "/SCL" "SCL"
+ U2 6
+ R3 2
+ CON1 3
+ U1 9
+}
+#End
