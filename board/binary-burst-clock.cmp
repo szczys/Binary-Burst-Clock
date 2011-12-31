@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2011-oct-15)-testing date = Sun 25 Dec 2011 07:35:46 PM CST
+Cmp-Mod V01 Created by CvPcb (2011-oct-15)-testing date = Mon 26 Dec 2011 10:38:16 AM CST
 
 BeginCmp
 TimeStamp = /4EEDEE10;
@@ -127,6 +127,20 @@ IdModule  = PIN_ARRAY_5x1;
 EndCmp
 
 BeginCmp
+TimeStamp = /4EF8A0C3;
+Reference = P13;
+ValeurCmp = I2C;
+IdModule  = PIN_ARRAY_4x1;
+EndCmp
+
+BeginCmp
+TimeStamp = /4EF8A266;
+Reference = P14;
+ValeurCmp = Power;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
 TimeStamp = /4EED05F0;
 Reference = Q1;
 ValeurCmp = 2907A;
@@ -220,14 +234,14 @@ EndCmp
 BeginCmp
 TimeStamp = /4EF4D955;
 Reference = SW1;
-ValeurCmp = SW_PUSH;
+ValeurCmp = Hours;
 IdModule  = MJTP1230;
 EndCmp
 
 BeginCmp
 TimeStamp = /4EF4D95D;
 Reference = SW2;
-ValeurCmp = SW_PUSH;
+ValeurCmp = Minutes;
 IdModule  = MJTP1230;
 EndCmp
 
@@ -255,7 +269,7 @@ EndCmp
 BeginCmp
 TimeStamp = /4EEE08F7;
 Reference = X1;
-ValeurCmp = 32.768_kHz_CRYSTAL;
+ValeurCmp = 32.768;
 IdModule  = Crystal_tuning-fork;
 EndCmp
 
