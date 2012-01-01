@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Sat 31 Dec 2011 04:27:24 PM CST
+EESchema Schematic File Version 2  date Sun 01 Jan 2012 04:04:24 PM CST
 LIBS:power
 LIBS:k3000
 LIBS:STP16CP05MTR
@@ -35,6 +35,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:avr-isp-6
+LIBS:mini_usb-b
 LIBS:binary-burst-clock-cache
 EELAYER 25  0
 EELAYER END
@@ -42,7 +43,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "31 dec 2011"
+Date "1 jan 2012"
 Rev ""
 Comp ""
 Comment1 ""
@@ -50,7 +51,10 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-NoConn ~ 3400 7000
+Wire Wire Line
+	2450 6700 2450 6800
+Wire Wire Line
+	2450 6800 2750 6800
 Wire Wire Line
 	1100 5350 1100 5150
 Wire Wire Line
@@ -136,15 +140,6 @@ Wire Wire Line
 	2950 5050 2950 5500
 Wire Wire Line
 	2950 5500 2700 5500
-Connection ~ 2550 7200
-Wire Wire Line
-	2650 6900 2550 6900
-Wire Wire Line
-	2550 6900 2550 7350
-Wire Wire Line
-	2650 6750 2550 6750
-Wire Wire Line
-	2550 6750 2550 6600
 Wire Wire Line
 	1900 7050 1900 7250
 Wire Wire Line
@@ -409,6 +404,22 @@ Wire Wire Line
 	1350 4950 1100 4950
 Wire Wire Line
 	1100 4950 1100 4750
+Wire Wire Line
+	3250 6800 3450 6800
+Wire Wire Line
+	3450 6800 3450 7000
+NoConn ~ 3150 7100
+NoConn ~ 3000 7100
+NoConn ~ 2850 7100
+$Comp
+L MINI_USB-B J1
+U 1 1 4F00D813
+P 3000 6800
+F 0 "J1" H 2700 6950 60  0000 C CNN
+F 1 "MINI_USB-B" H 3000 7050 60  0000 C CNN
+	1    3000 6800
+	1    0    0    -1  
+$EndComp
 $Comp
 L GND #PWR01
 U 1 1 4EF8A289
@@ -467,7 +478,6 @@ F 1 "I2C" V 6650 4000 50  0000 C CNN
 	1    6600 4000
 	1    0    0    -1  
 $EndComp
-NoConn ~ 2650 7000
 $Comp
 L K3000 CONN1
 U 1 1 4EF4DA41
@@ -752,35 +762,24 @@ F 1 "+BATT" H 4100 6750 30  0000 C CNN
 	1    4100 6650
 	1    0    0    -1  
 $EndComp
-Text Notes 2550 6050 0    60   ~ 0
+Text Notes 2550 6400 0    60   ~ 0
 Power (USB mini-b)
-NoConn ~ 3400 6900
-NoConn ~ 3400 6750
 $Comp
 L +5V #PWR017
 U 1 1 4EEDF02B
-P 2550 6600
-F 0 "#PWR017" H 2550 6690 20  0001 C CNN
-F 1 "+5V" H 2550 6690 30  0000 C CNN
-	1    2550 6600
+P 2450 6700
+F 0 "#PWR017" H 2450 6790 20  0001 C CNN
+F 1 "+5V" H 2450 6790 30  0000 C CNN
+	1    2450 6700
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR018
 U 1 1 4EEDF025
-P 2550 7350
-F 0 "#PWR018" H 2550 7350 30  0001 C CNN
-F 1 "GND" H 2550 7280 30  0001 C CNN
-	1    2550 7350
-	1    0    0    -1  
-$EndComp
-$Comp
-L USB J1
-U 1 1 4EEDEEC4
-P 3050 6550
-F 0 "J1" H 3000 6950 60  0000 C CNN
-F 1 "USB" V 2800 6700 60  0000 C CNN
-	1    3050 6550
+P 3450 7000
+F 0 "#PWR018" H 3450 7000 30  0001 C CNN
+F 1 "GND" H 3450 6930 30  0001 C CNN
+	1    3450 7000
 	1    0    0    -1  
 $EndComp
 Text Notes 1200 6150 0    60   ~ 0

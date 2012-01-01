@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Mon 26 Dec 2011 10:55:31 AM CST
+EESchema Schematic File Version 2  date Sat 31 Dec 2011 04:27:24 PM CST
 LIBS:power
 LIBS:k3000
 LIBS:STP16CP05MTR
@@ -42,7 +42,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "26 dec 2011"
+Date "31 dec 2011"
 Rev ""
 Comp ""
 Comment1 ""
@@ -50,6 +50,7 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+NoConn ~ 3400 7000
 Wire Wire Line
 	1100 5350 1100 5150
 Wire Wire Line
@@ -398,10 +399,6 @@ Wire Wire Line
 	5600 1500 5850 1500
 Wire Wire Line
 	5600 1700 5850 1700
-Wire Wire Line
-	3050 7200 3400 7200
-Wire Wire Line
-	3400 7200 3400 7000
 Wire Wire Line
 	6250 3950 5800 3950
 Wire Wire Line
@@ -776,15 +773,6 @@ F 0 "#PWR018" H 2550 7350 30  0001 C CNN
 F 1 "GND" H 2550 7280 30  0001 C CNN
 	1    2550 7350
 	1    0    0    -1  
-$EndComp
-$Comp
-L R R4
-U 1 1 4EEDEFC3
-P 2800 7200
-F 0 "R4" V 2880 7200 50  0000 C CNN
-F 1 "10M" V 2800 7200 50  0000 C CNN
-	1    2800 7200
-	0    1    1    0   
 $EndComp
 $Comp
 L USB J1
