@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2011-oct-15)-testing date = Mon 26 Dec 2011 10:38:16 AM CST
+Cmp-Mod V01 Created by CvPcb (2011-oct-15)-testing date = Mon 02 Jan 2012 08:01:56 PM CST
 
 BeginCmp
 TimeStamp = /4EEDEE10;
@@ -36,9 +36,16 @@ IdModule  = CR1220_534-3000;
 EndCmp
 
 BeginCmp
-TimeStamp = /4EEDEEC4;
+TimeStamp = /4F025F09;
+Reference = D1;
+ValeurCmp = LED;
+IdModule  = LED-0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F00D813;
 Reference = J1;
-ValeurCmp = USB;
+ValeurCmp = MINI_USB-B;
 IdModule  = usb-mini-b_154-15320-E;
 EndCmp
 
@@ -190,9 +197,9 @@ IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /4EEDEFC3;
+TimeStamp = /4F026145;
 Reference = R4;
-ValeurCmp = 10M;
+ValeurCmp = 220;
 IdModule  = SM0805;
 EndCmp
 
