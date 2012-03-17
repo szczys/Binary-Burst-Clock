@@ -14,6 +14,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include "USI_TWI_Master.h"
 
 //Shift resgister assignments
 #define SHIFTREGISTER DDRA
@@ -35,8 +36,13 @@
 //Multiplexing
 #define TIM0_PREWIND 255-25 	//5 kHz (8 MHz / 64 (prescaler / 25 ticks per overflow)
 
+//I2C Bus
+#define RTC_ADDR  0xDE	// For MCP79410 RTC Chip
+#define MESSAGEBUF_SIZE       8
+
 //Variables
 volatile unsigned int buffer[4] = { 0x0FF0, 0x00F0, 0x000F, 0x0F0F };
+unsigned char messageBuf[MESSAGEBUF_SIZE];      //Used for I2C bus
 
 //Prototypes
 void init_IO(void);
@@ -163,21 +169,24 @@ void show_binary_time(unsigned char hours, unsigned char minutes){
   unsigned int new_blue1 = 0x0000;
   unsigned int new_blue2 = 0x0000;
   
+  unsigned char singles_loc;
+  if (min_fives == 11) singles_loc = 0;
+  else singles_loc = min_fives+1;
     switch(min_singles) {
     case 0:
       break;
     case 1:
-      new_blue0 |=  1<<(min_fives+1);
+      new_blue0 |=  1<<(singles_loc);
       break;
     case 2:
-      new_blue1 |= 1<<(min_fives+1);
+      new_blue1 |= 1<<(singles_loc);
       break;
     case 3:
-      new_blue0 |= 1<<(min_fives+1);
-      new_blue1 |= 1<<(min_fives+1);
+      new_blue0 |= 1<<(singles_loc);
+      new_blue1 |= 1<<(singles_loc);
       break;
     case 4:
-      new_blue2 |= 1<<(min_fives+1);
+      new_blue2 |= 1<<(singles_loc);
   }
   
   while (min_fives--) {
@@ -191,8 +200,8 @@ void show_binary_time(unsigned char hours, unsigned char minutes){
   buffer[2] = new_blue2;
   
   //Load hours into buffer for RED leds
-  if (hours == 12) buffer[3] = 0x0001;
-  else buffer[3] = 1<<hours;
+  if (hours > 11) hours -= 12;        //Adjust for 24 hour clock
+  buffer[3] = 1<<hours;
 }
 
 /*--------------------------------------------------------------------------
@@ -230,6 +239,16 @@ void red_sweep(unsigned char revs, unsigned int delay){
   }  
 }
 
+/*--------------------------------------------------------------------------
+  FUNC: 3/17/12 - Convert RTC time to decimal
+  PARAMS: bcd - tens in upper byte, ones in lower byte
+  RETURNS: Decimal value
+--------------------------------------------------------------------------*/
+unsigned int rtc_to_dec(unsigned char bcd){
+  return (bcd & 0x0F) + (bcd>>4)*10;
+}
+
+
 int main(void)
 {
   init_IO();
@@ -245,7 +264,42 @@ int main(void)
   red_sweep(5,12);
   blue_sweep(1,50);
   
-  show_binary_time(8,43);
+  //Setup the  RTC
+  //Initialize the TWI Master
+  USI_TWI_Master_Initialise();
+  
+  //Read timer from RTC
+  //Send the register address we want to read from
+  messageBuf[0] = RTC_ADDR;
+  messageBuf[1] = 0x00;
+  USI_TWI_Start_Read_Write( messageBuf, 2 );
+    
+  //Read in the data from three registers
+  messageBuf[0] = RTC_ADDR | 0x01;
+  USI_TWI_Start_Read_Write( messageBuf, 4 );
+  
+  
+  //if (messageBuf[1] & 0x80) {
+    //RTC oscillator is running, load in time data to the display
+    //Display the current time
+    unsigned char temp_mins = (messageBuf[2] & 0x0F) + (messageBuf[2]>>4)*10;
+    show_binary_time(rtc_to_dec(messageBuf[3]),rtc_to_dec(messageBuf[2]));
+  //}
+  /*
+  else {
+    //RTC oscillator is not running, it must need initialization
+    //Send write address via I2C, send register location and command to start oscillator
+    messageBuf[0] = RTC_ADDR;   //Slave address (write)
+    messageBuf[1] = 0x00;		// Starting address in memory
+    messageBuf[2] = 0x80;		//Start RTC oscillator
+    messageBuf[3] = 0x05;		//Set Minutes
+    messageBuf[4] = 0x10;		//Set Hours
+    messageBuf[5] = 0x09;		//Enable backup battery
+
+    USI_TWI_Start_Read_Write( messageBuf, 6 ); //Perform I2C write with staged data
+  }
+  */
+  
   while(1) {
 
   }
@@ -257,6 +311,9 @@ ISR (TIM0_OVF_vect) {
   static unsigned char tracker = 0;
     
   all_off();				//Turn off all high-side transistors
+  //Shift in data for next interupt
+  shiftByte((char)(buffer[tracker]>>8));			//Shift in high byte
+  shiftByte((char)(buffer[tracker]));                   		//Shift in low byte
   SHIFTPORT |= LATCH;					//Latch shifted data
   SHIFTPORT &= ~LATCH;	//Latch previously shifted data
   
@@ -277,9 +334,7 @@ ISR (TIM0_OVF_vect) {
   
   if (++tracker > 7) tracker = 0;
   
-  //Shift in data for next interupt
-  shiftByte((char)(buffer[tracker]>>8));			//Shift in high byte
-  shiftByte((char)(buffer[tracker]));                   		//Shift in low byte
+
   
 
   //Don't latch, that will happen on the next interrupt
