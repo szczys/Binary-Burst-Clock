@@ -282,8 +282,9 @@ int main(void)
   //if (messageBuf[1] & 0x80) {
     //RTC oscillator is running, load in time data to the display
     //Display the current time
-    unsigned char temp_mins = (messageBuf[2] & 0x0F) + (messageBuf[2]>>4)*10;
     show_binary_time(rtc_to_dec(messageBuf[3]),rtc_to_dec(messageBuf[2]));
+    
+    unsigned char clock_ticks = rtc_to_dec(messageBuf[1] & 0x7F);       //Mask for oscillator start/stop bit
   //}
   /*
   else {
@@ -301,7 +302,34 @@ int main(void)
   */
   
   while(1) {
+    //The following is a hack to keep the displayed time up-to-date. It delays 1 seconds at a time, for roughly 60 seconds.
+    //At the 30 second mark it pulls in the time from the RTC, displaying it and resyncing the seconds timer with the RTC's
+    //precision clock.
+    
+    //TODO: Use a timer instead of a blocking function for synchronization
+    //TODO: Come up with a better method of syncing time with the RTC.
+    
+    delay_ms(1000);     //Wait 1 second
+    ++clock_ticks;
+    
+    switch (clock_ticks) {
+      case 30:
+        //Read in time from RTC
+        //Send the register address we want to read from
+        messageBuf[0] = RTC_ADDR;
+        messageBuf[1] = 0x00;
+        USI_TWI_Start_Read_Write( messageBuf, 2 );
+          
+        //Read in the data from three registers
+        messageBuf[0] = RTC_ADDR | 0x01;
+        USI_TWI_Start_Read_Write( messageBuf, 4 );
 
+        show_binary_time(rtc_to_dec(messageBuf[3]),rtc_to_dec(messageBuf[2]));
+          
+         clock_ticks = rtc_to_dec(messageBuf[1] & 0x7F);       //Sync seconds with RTC
+      case 60:
+        clock_ticks = 0;
+    }
   }
 }
 
