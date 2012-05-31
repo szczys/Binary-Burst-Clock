@@ -295,6 +295,29 @@ int main(void)
     read_hours = i2c_readNak();
     i2c_stop();
     
+    //Check if the oscillator is running
+    if ((read_seconds & (1<<7)) == 0)
+    {
+      //start oscillator if it is not running
+      i2c_start_wait(RTC_ADDR+I2C_WRITE);
+      i2c_write(0x00);
+      i2c_write(1<<7);  //Start oscillator
+      i2c_write(0x05);  //Set minutes
+      i2c_write(0x02);  //Set hours
+      i2c_write(1<<3); //Enable battery backup
+      i2c_stop();
+      
+      i2c_start_wait(RTC_ADDR+I2C_WRITE);
+      i2c_write(0x00);
+      i2c_rep_start(RTC_ADDR+I2C_READ);
+      read_seconds = i2c_readAck();
+      read_minutes = i2c_readAck();
+      read_hours = i2c_readNak();
+      i2c_stop();
+      
+    }
+    
+    //while(1); 
     show_binary_time(rtc_to_dec(read_hours),rtc_to_dec(read_minutes));
     
     clock_ticks = rtc_to_dec(read_seconds & 0x7F);       //Sync seconds with RTC
@@ -314,7 +337,7 @@ int main(void)
     switch (clock_ticks) {
       case 30:
         //Read in time from RTC
-        i2c_start(RTC_ADDR+I2C_WRITE);
+        i2c_start_wait(RTC_ADDR+I2C_WRITE);
         i2c_write(0x00);
         i2c_rep_start(RTC_ADDR+I2C_READ);
         read_seconds = i2c_readAck();
@@ -330,6 +353,8 @@ int main(void)
         clock_ticks = 0;
         break;
     }
+    
+    
   }
 }
 
