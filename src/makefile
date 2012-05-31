@@ -37,7 +37,7 @@ OPT = s
 FORMAT = ihex
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c USI_TWI_Master.c
+SRC = $(TARGET).c
 
 # If there is more than one source file, append them above, or modify and
 # uncomment the following:
@@ -56,7 +56,7 @@ SRC = $(TARGET).c USI_TWI_Master.c
 # Even though the DOS/Win* filesystem matches both .s and .S the same,
 # it will preserve the spelling of the filenames, and gcc itself does
 # care about how the name is spelled on its command-line.
-ASRC = 
+ASRC = i2cmaster.S
 
 
 # List any extra directories to look for include files here.

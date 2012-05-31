@@ -14,7 +14,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include "USI_TWI_Master.h"
+#include "i2cmaster.h"
 
 //Shift resgister assignments
 #define SHIFTREGISTER DDRA
@@ -265,42 +265,39 @@ int main(void)
   blue_sweep(1,50);
   
   //Setup the  RTC
-  //Initialize the TWI Master
-  USI_TWI_Master_Initialise();
+  //Initialize the I2C Master
+  i2c_init();
+  unsigned char read_seconds;
+  unsigned char read_minutes;
+  unsigned char read_hours;
   
   //Read timer from RTC
   //Send the register address we want to read from
-  messageBuf[0] = RTC_ADDR;
-  messageBuf[1] = 0x00;
-  USI_TWI_Start_Read_Write( messageBuf, 2 );
-    
-  //Read in the data from three registers
-  messageBuf[0] = RTC_ADDR | 0x01;
-  USI_TWI_Start_Read_Write( messageBuf, 4 );
   
-  
-  //if (messageBuf[1] & 0x80) {
-    //RTC oscillator is running, load in time data to the display
-    //Display the current time
-    show_binary_time(rtc_to_dec(messageBuf[3]),rtc_to_dec(messageBuf[2]));
-    
-    unsigned char clock_ticks = rtc_to_dec(messageBuf[1] & 0x7F);       //Mask for oscillator start/stop bit
-  //}
-  /*
-  else {
-    //RTC oscillator is not running, it must need initialization
-    //Send write address via I2C, send register location and command to start oscillator
-    messageBuf[0] = RTC_ADDR;   //Slave address (write)
-    messageBuf[1] = 0x00;		// Starting address in memory
-    messageBuf[2] = 0x80;		//Start RTC oscillator
-    messageBuf[3] = 0x05;		//Set Minutes
-    messageBuf[4] = 0x10;		//Set Hours
-    messageBuf[5] = 0x09;		//Enable backup battery
-
-    USI_TWI_Start_Read_Write( messageBuf, 6 ); //Perform I2C write with staged data
+  unsigned char return_value;
+  return_value = i2c_start(RTC_ADDR+I2C_WRITE);
+  if (return_value)
+  {
+    //Error occurred: display 5:55 as an error message
+    i2c_stop();
+    show_binary_time(5,55);
   }
-  */
+  else
+  {
+    //RTC communications successful. Read in current time
+    i2c_write(0x00);
+    i2c_rep_start(RTC_ADDR+I2C_READ);
+    read_seconds = i2c_readAck();
+    read_minutes = i2c_readAck();
+    read_hours = i2c_readNak();
+    i2c_stop();
+    
+    show_binary_time(rtc_to_dec(read_hours),rtc_to_dec(read_minutes));
+  }
   
+  while(1) { }
+  /*
+
   while(1) {
     //The following is a hack to keep the displayed time up-to-date. It delays 1 seconds at a time, for roughly 60 seconds.
     //At the 30 second mark it pulls in the time from the RTC, displaying it and resyncing the seconds timer with the RTC's
@@ -330,7 +327,7 @@ int main(void)
       case 60:
         clock_ticks = 0;
     }
-  }
+  }*/
 }
 
 ISR (TIM0_OVF_vect) {
