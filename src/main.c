@@ -40,12 +40,32 @@
 #define RTC_ADDR  0xDE	// For MCP79410 RTC Chip
 #define MESSAGEBUF_SIZE       8
 
+//Buttons
+#define KEY_DDR		DDRA
+#define KEY_PORT	PORTA
+#define KEY_PIN		PINA
+#define KEY0		5	//Hours
+#define KEY1		7	//Minutes
+#define DEBOUNCE_PREWIND (unsigned int)(signed long)-(((F_CPU / 1024) * .01) + 0.5);   // preload for 10ms
+#define REPEAT_MASK   (1<<KEY0 | 1<<KEY1)   // repeat: key1, key2 
+#define REPEAT_START   100      // after 1000ms 
+#define REPEAT_NEXT   20      // every 200ms
+
 //Variables
 volatile unsigned int buffer[4] = { 0x0FF0, 0x00F0, 0x000F, 0x0F0F };
 unsigned char messageBuf[MESSAGEBUF_SIZE];      //Used for I2C bus
+volatile unsigned char key_press;       //buttons
+volatile unsigned char key_state;       //buttons
+volatile unsigned char key_rpt;         //buttons
+
 
 //Prototypes
 void init_IO(void);
+void init_Timers(void);
+unsigned char get_key_press( unsigned char key_mask );
+unsigned char get_key_rpt( unsigned char key_mask );
+unsigned char get_key_short( unsigned char key_mask );
+unsigned char get_key_long( unsigned char key_mask );
 void shiftByte(unsigned char byte);
 void delay_ms(int cnt);
 void delay_ms(int cnt);
@@ -68,6 +88,9 @@ void init_IO(void){
   //Set up shift registers
   SHIFTREGISTER |= (DATA | LATCH | CLOCK);	//Set outputs
   SHIFTPORT &= ~(DATA | LATCH | CLOCK);	//Set pins low
+  
+  //Set up buttons
+  KEY_DDR &= ~(1<<KEY0 | 1<<KEY1);
 }
 
 /*--------------------------------------------------------------------------
@@ -83,8 +106,63 @@ void init_Timers(void){
   TCNT0 = TIM0_PREWIND;						//Prewind timer0 counter
   TIMSK0 = 1<<TOIE0;				//Enable timer0 overflow interrupt
   TCCR0B = (1<<CS01) | (1<<CS00);		//Timer0 prescaler of 64
+  
+  TCNT1 = DEBOUNCE_PREWIND;
+  TIMSK1 = 1<<TOIE1;
+  TCCR1B = (1<<CS12) | (1<<CS10);  
   sei();        //set global interrupts
 }
+
+/*--------------------------------------------------------------------------
+  FUNC: 8/1/11 - Used to read debounced button presses
+  PARAMS: A keymask corresponding to the pin for the button you with to poll
+  RETURNS: A keymask where any high bits represent a button press
+--------------------------------------------------------------------------*/
+unsigned char get_key_press( unsigned char key_mask )
+{
+  cli();			// read and clear atomic !
+  key_mask &= key_press;	// read key(s)
+  key_press ^= key_mask;	// clear key(s)
+  sei();
+  return key_mask;
+}
+
+/*--------------------------------------------------------------------------
+  FUNC: 8/1/11 - Used to check for debounced buttons that are held down
+  PARAMS: A keymask corresponding to the pin for the button you with to poll
+  RETURNS: A keymask where any high bits is a button held long enough for
+		its input to be repeated
+--------------------------------------------------------------------------*/
+unsigned char get_key_rpt( unsigned char key_mask ) 
+{ 
+  cli();               // read and clear atomic ! 
+  key_mask &= key_rpt;                           // read key(s) 
+  key_rpt ^= key_mask;                           // clear key(s) 
+  sei(); 
+  return key_mask; 
+} 
+
+/*--------------------------------------------------------------------------
+  FUNC: 8/1/11 - Used to read debounced button released after a short press
+  PARAMS: A keymask corresponding to the pin for the button you with to poll
+  RETURNS: A keymask where any high bits represent a quick press and release
+--------------------------------------------------------------------------*/
+unsigned char get_key_short( unsigned char key_mask ) 
+{ 
+  cli();         // read key state and key press atomic ! 
+  return get_key_press( ~key_state & key_mask ); 
+} 
+
+/*--------------------------------------------------------------------------
+  FUNC: 8/1/11 - Used to read debounced button held for REPEAT_START amount
+	of time.
+  PARAMS: A keymask corresponding to the pin for the button you with to poll
+  RETURNS: A keymask where any high bits represent a long button press
+--------------------------------------------------------------------------*/
+unsigned char get_key_long( unsigned char key_mask ) 
+{ 
+  return get_key_press( get_key_rpt( key_mask )); 
+} 
 
 /*--------------------------------------------------------------------------
   FUNC: 3/4/12 - Transmit 8-bits ot a shift register
@@ -354,7 +432,11 @@ int main(void)
         break;
     }
     
-    
+    if( get_key_short( 1<<KEY0 )) 
+      buffer[3] = 0xFFFF;
+
+    if( get_key_long( 1<<KEY0 )) 
+      buffer[3] = 0x0000;
   }
 }
 
@@ -386,11 +468,31 @@ ISR (TIM0_OVF_vect) {
   }
   
   if (++tracker > 7) tracker = 0;
-  
-
-  
 
   //Don't latch, that will happen on the next interrupt
-  
-  
+}
+
+//Interrupt service routine for buttons
+ISR(TIM1_OVF_vect)           // every 10ms
+{
+  static unsigned char ct0, ct1, rpt;
+  unsigned char i;
+
+  //TCNT0 = (unsigned char)(signed short)-(((F_CPU / 1024) * .01) + 0.5);   // preload for 10ms
+  //TODO: Figure out the overload preload math here!!!
+  TCNT1 = DEBOUNCE_PREWIND;
+
+  i = key_state ^ ~KEY_PIN;    // key changed ?
+  ct0 = ~( ct0 & i );          // reset or count ct0
+  ct1 = ct0 ^ (ct1 & i);       // reset or count ct1
+  i &= ct0 & ct1;              // count until roll over ?
+  key_state ^= i;              // then toggle debounced state
+  key_press |= key_state & i;  // 0->1: key press detect
+
+  if( (key_state & REPEAT_MASK) == 0 )   // check repeat function 
+     rpt = REPEAT_START;      // start delay 
+  if( --rpt == 0 ){ 
+    rpt = REPEAT_NEXT;         // repeat delay 
+    key_rpt |= key_state & REPEAT_MASK; 
+  } 
 }
