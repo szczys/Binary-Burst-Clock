@@ -57,6 +57,7 @@ unsigned char read_seconds;
 unsigned char read_minutes;
 unsigned char read_hours;
 unsigned char clock_ticks;
+volatile unsigned char tick_flag = 0;
 volatile unsigned char key_press;       //buttons
 volatile unsigned char key_state;       //buttons
 volatile unsigned char key_rpt;         //buttons
@@ -481,16 +482,17 @@ int main(void)
   
   poll_rtc();   //Read time from RTC, display it on LEDs, and syncronize seconds with ATtiny
 
-  while(1) {
+  while(1) 
+  {
     //The following is a hack to keep the displayed time up-to-date. It delays 1 seconds at a time, for roughly 60 seconds.
     //At the 30 second mark it pulls in the time from the RTC, displaying it and resyncing the seconds timer with the RTC's
     //precision clock.
     
-    //TODO: Use a timer instead of a blocking function for synchronization
-    //TODO: Come up with a better method of syncing time with the RTC.
-    
-    delay_ms(1000);     //Wait 1 second
-    ++clock_ticks;
+    if (tick_flag) 
+    {
+      clock_ticks += tick_flag;
+      tick_flag = 0;
+    }
     
     switch (clock_ticks) {
       case 30:
@@ -558,11 +560,10 @@ ISR (TIM0_OVF_vect) {
 //Interrupt service routine for buttons
 ISR(TIM1_OVF_vect)           // every 10ms
 {
+  static unsigned char one_second_counter = 0;
   static unsigned char ct0, ct1, rpt;
   unsigned char i;
 
-  //TCNT0 = (unsigned char)(signed short)-(((F_CPU / 1024) * .01) + 0.5);   // preload for 10ms
-  //TODO: Figure out the overload preload math here!!!
   TCNT1 = DEBOUNCE_PREWIND;
 
   i = key_state ^ ~KEY_PIN;    // key changed ?
@@ -577,5 +578,11 @@ ISR(TIM1_OVF_vect)           // every 10ms
   if( --rpt == 0 ){ 
     rpt = REPEAT_NEXT;         // repeat delay 
     key_rpt |= key_state & REPEAT_MASK; 
-  } 
+  }
+  
+  if (++one_second_counter == 100)
+  {
+    one_second_counter = 0;
+    ++tick_flag;
+  }
 }
