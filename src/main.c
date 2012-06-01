@@ -72,6 +72,12 @@ unsigned char get_key_long( unsigned char key_mask );
 void shiftByte(unsigned char byte);
 void delay_ms(int cnt);
 void testPattern(void);
+void show_binary_time(unsigned char hours, unsigned char minutes);
+void blue_sweep(unsigned char revs, unsigned int delay);
+void red_sweep(unsigned char revs, unsigned int delay);
+unsigned int rtc_to_dec(unsigned char bcd);
+void inc_hours(void);
+void inc_minutes(void);
 void poll_rtc(void);
 
 /*--------------------------------------------------------------------------
@@ -94,6 +100,7 @@ void init_IO(void){
   
   //Set up buttons
   KEY_DDR &= ~(1<<KEY0 | 1<<KEY1);
+  KEY_PORT |= (1<<KEY0 | 1<<KEY1);
 }
 
 /*--------------------------------------------------------------------------
@@ -330,6 +337,71 @@ unsigned int rtc_to_dec(unsigned char bcd){
 }
 
 /*--------------------------------------------------------------------------
+  FUNC: 5/31/12 - Increment Hours
+  PARAMS: None
+  RETURNS: None
+--------------------------------------------------------------------------*/
+void inc_hours(void)
+{
+  //NOTE: right now we're using 24 hour time on the RTC
+  //    but displaying it on a 12 hour interface and we don't
+  //    care if we're off by twelve hours. This may need to be
+  //    fixed if it ever matters.  
+  
+  //Get current hours
+  i2c_start_wait(RTC_ADDR+I2C_WRITE);
+  i2c_write(0x02);
+  i2c_rep_start(RTC_ADDR+I2C_READ);
+  read_hours = i2c_readNak();
+  i2c_stop();
+  
+  //Do the math
+  if ((read_hours & 0xF0) > 0x10) //If tens digit is 2
+  {
+    if ((read_hours & 0x0F) > 0x02) read_hours = 0x00; //If ones digit is 3
+    else read_hours += 1;
+  }
+  else if ((read_hours & 0x0F) > 0x08) read_hours = (read_hours &0xF0) + 0x10; 
+  else read_hours += 1;
+  
+  //Write new hours
+  i2c_start_wait(RTC_ADDR+I2C_WRITE);
+  i2c_write(0x02);
+  i2c_write(read_hours);
+  i2c_stop();
+}
+
+/*--------------------------------------------------------------------------
+  FUNC: 5/31/12 - Increment Minutes
+  PARAMS: None
+  RETURNS: None
+--------------------------------------------------------------------------*/
+void inc_minutes(void)
+{
+  //Get current minutes
+  i2c_start_wait(RTC_ADDR+I2C_WRITE);
+  i2c_write(0x01);
+  i2c_rep_start(RTC_ADDR+I2C_READ);
+  read_minutes = i2c_readNak();
+  i2c_stop();
+  
+  //Do the math
+  if ((read_minutes & 0x0F) > 0x08) //If ones digit is 9
+  {
+    if ((read_minutes & 0xF0) > 0x40) read_minutes = 0x00; //If tens digit is 5
+    else read_minutes = (read_minutes & 0xF0) + 0x10;
+  }
+  else read_minutes += 1;
+  
+  //Write new minutes (and zero out seconds while you're at it)
+  i2c_start_wait(RTC_ADDR+I2C_WRITE);
+  i2c_write(0x00);
+  i2c_write(1<<7);
+  i2c_write(read_minutes);
+  i2c_stop();
+}
+
+/*--------------------------------------------------------------------------
   FUNC: 5/31/12 - Get and use time data from RTC chip
   PARAMS: None
   RETURNS: None
@@ -429,11 +501,25 @@ int main(void)
         break;
     }
     
+    /*
     if( get_key_short( 1<<KEY0 )) 
       buffer[3] = 0xFFFF;
 
     if( get_key_long( 1<<KEY0 )) 
       buffer[3] = 0x0000;
+    */
+    
+    if( get_key_press( 1<<KEY0 )) 
+    {
+      inc_hours();
+      poll_rtc();
+    }
+    
+    if( get_key_press( 1<<KEY1 )) 
+    {
+      inc_minutes();
+      poll_rtc();
+    }
   }
 }
 
