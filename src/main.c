@@ -53,7 +53,10 @@
 
 //Variables
 volatile unsigned int buffer[4] = { 0x0FF0, 0x00F0, 0x000F, 0x0F0F };
-unsigned char messageBuf[MESSAGEBUF_SIZE];      //Used for I2C bus
+unsigned char read_seconds;
+unsigned char read_minutes;
+unsigned char read_hours;
+unsigned char clock_ticks;
 volatile unsigned char key_press;       //buttons
 volatile unsigned char key_state;       //buttons
 volatile unsigned char key_rpt;         //buttons
@@ -68,8 +71,8 @@ unsigned char get_key_short( unsigned char key_mask );
 unsigned char get_key_long( unsigned char key_mask );
 void shiftByte(unsigned char byte);
 void delay_ms(int cnt);
-void delay_ms(int cnt);
 void testPattern(void);
+void poll_rtc(void);
 
 /*--------------------------------------------------------------------------
   FUNC: 3/4/12 - Initialize Input/Output Pins
@@ -326,6 +329,31 @@ unsigned int rtc_to_dec(unsigned char bcd){
   return (bcd & 0x0F) + (bcd>>4)*10;
 }
 
+/*--------------------------------------------------------------------------
+  FUNC: 5/31/12 - Get and use time data from RTC chip
+  PARAMS: None
+  RETURNS: None
+  NOTES: Reads first three registers of RTC to get
+    seconds, minutes, and hours data. Displays
+    minutes and hours on LED output. Synchronizes
+    the ATtiny seconds tracker.
+--------------------------------------------------------------------------*/
+void poll_rtc(void) {
+  i2c_start_wait(RTC_ADDR+I2C_WRITE);
+  i2c_write(0x00);
+  i2c_rep_start(RTC_ADDR+I2C_READ);
+  read_seconds = i2c_readAck();
+  read_minutes = i2c_readAck();
+  read_hours = i2c_readNak();
+  i2c_stop();
+  
+  //show time on LED display
+  show_binary_time(rtc_to_dec(read_hours),rtc_to_dec(read_minutes));
+  
+  //Sync seconds with RTC
+  clock_ticks = rtc_to_dec(read_seconds & 0x7F);       
+}
+
 
 int main(void)
 {
@@ -345,62 +373,42 @@ int main(void)
   //Setup the  RTC
   //Initialize the I2C Master
   i2c_init();
-  unsigned char read_seconds;
-  unsigned char read_minutes;
-  unsigned char read_hours;
-  unsigned char clock_ticks;
-  
+    
   //Read timer from RTC
   //Send the register address we want to read from
   
-  unsigned char return_value;
-  return_value = i2c_start(RTC_ADDR+I2C_WRITE);
-  if (return_value)
+  //Test i2c bus for RTC presence
+  
+  
+  if (i2c_start(RTC_ADDR+I2C_WRITE))
   {
     //Error occurred: display 5:55 as an error message
-    i2c_stop();
     show_binary_time(5,55);
     //TODO: What should happen if there's an error?
     while(1) { } //trap after error.
   }
-  else
+  
+  //RTC chip responded, check if oscillator is running:
+  i2c_write(0x00);
+  i2c_rep_start(RTC_ADDR+I2C_READ);
+  read_seconds = i2c_readNak();
+  i2c_stop(); 
+  
+  //Test oscillator status bit
+  if ((read_seconds & (1<<7)) == 0)
   {
-    //RTC communications successful. Read in current time
+    //start oscillator if it is not running
+    i2c_start_wait(RTC_ADDR+I2C_WRITE);
     i2c_write(0x00);
-    i2c_rep_start(RTC_ADDR+I2C_READ);
-    read_seconds = i2c_readAck();
-    read_minutes = i2c_readAck();
-    read_hours = i2c_readNak();
+    i2c_write(1<<7);  //Start oscillator
+    i2c_write(0x05);  //Set minutes
+    i2c_write(0x02);  //Set hours
+    i2c_write(1<<3); //Enable battery backup
     i2c_stop();
-    
-    //Check if the oscillator is running
-    if ((read_seconds & (1<<7)) == 0)
-    {
-      //start oscillator if it is not running
-      i2c_start_wait(RTC_ADDR+I2C_WRITE);
-      i2c_write(0x00);
-      i2c_write(1<<7);  //Start oscillator
-      i2c_write(0x05);  //Set minutes
-      i2c_write(0x02);  //Set hours
-      i2c_write(1<<3); //Enable battery backup
-      i2c_stop();
-      
-      i2c_start_wait(RTC_ADDR+I2C_WRITE);
-      i2c_write(0x00);
-      i2c_rep_start(RTC_ADDR+I2C_READ);
-      read_seconds = i2c_readAck();
-      read_minutes = i2c_readAck();
-      read_hours = i2c_readNak();
-      i2c_stop();
-      
-    }
-    
-    //while(1); 
-    show_binary_time(rtc_to_dec(read_hours),rtc_to_dec(read_minutes));
-    
-    clock_ticks = rtc_to_dec(read_seconds & 0x7F);       //Sync seconds with RTC
   }
   
+  poll_rtc();   //Read time from RTC, display it on LEDs, and syncronize seconds with ATtiny
+
   while(1) {
     //The following is a hack to keep the displayed time up-to-date. It delays 1 seconds at a time, for roughly 60 seconds.
     //At the 30 second mark it pulls in the time from the RTC, displaying it and resyncing the seconds timer with the RTC's
@@ -414,18 +422,7 @@ int main(void)
     
     switch (clock_ticks) {
       case 30:
-        //Read in time from RTC
-        i2c_start_wait(RTC_ADDR+I2C_WRITE);
-        i2c_write(0x00);
-        i2c_rep_start(RTC_ADDR+I2C_READ);
-        read_seconds = i2c_readAck();
-        read_minutes = i2c_readAck();
-        read_hours = i2c_readNak();
-        i2c_stop();
-    
-        show_binary_time(rtc_to_dec(read_hours),rtc_to_dec(read_minutes));
-    
-        clock_ticks = rtc_to_dec(read_seconds & 0x7F);       //Sync seconds with RTC
+        poll_rtc();   //Read time from RTC, display it on LEDs, and syncronize seconds with ATtiny
         break;
       case 60:
         clock_ticks = 0;
