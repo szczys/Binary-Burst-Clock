@@ -424,7 +424,7 @@ void poll_rtc(void) {
   show_binary_time(rtc_to_dec(read_hours),rtc_to_dec(read_minutes));
   
   //Sync seconds with RTC
-  clock_ticks = rtc_to_dec(read_seconds & 0x7F);       
+  clock_ticks = rtc_to_dec(read_seconds & 0x7F);     
 }
 
 
@@ -502,15 +502,7 @@ int main(void)
         clock_ticks = 0;
         break;
     }
-    
-    /*
-    if( get_key_short( 1<<KEY0 )) 
-      buffer[3] = 0xFFFF;
-
-    if( get_key_long( 1<<KEY0 )) 
-      buffer[3] = 0x0000;
-    */
-    
+       
     if( get_key_press( 1<<KEY0 )) 
     {
       inc_hours();
